@@ -6,6 +6,7 @@ export class NotesController {
     constructor() {
         console.log('notes control init');
         this.setActiveNote('javascript')
+        this.drawNotesList()
     }
 
     setActiveNote(name) {
@@ -17,6 +18,15 @@ export class NotesController {
     drawActiveNote() {
         let htmlInject = AppState.activeNote.activeHTMLTemplate
         setHTML('activeNote', htmlInject)
+    }
+
+    drawNotesList() {
+        const notes = AppState.notes
+        let htmlInject = ''
+        notes.forEach((note) => {
+            htmlInject += note.listHTMLTemplate
+        });
+        setHTML('notesList', htmlInject)
     }
 
     get sideBarHTMLTemplate() {

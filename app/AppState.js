@@ -12,6 +12,11 @@ class ObservableAppState extends EventEmitter {
     name: 'javascript',
     body: 'a lil bit of body text here',
     color: ''
+  }),
+  new Note({
+    name: 'javascript 2',
+    body: 'a lil bit more of that sweet sweet body text here',
+    color: ''
   })
   ]
 

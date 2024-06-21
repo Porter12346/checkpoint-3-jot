@@ -12,8 +12,8 @@ export class Note {
         return (`<div class="row  border bg-opacity-25 bg-light py-4 px-2">
             <div div class="col-5" >
             <h3>${this.name}</h3>
-            <p>Created at: ${this.createTime}</p>
-            <p>Updated at: ${this.editTime}</p>
+            <p>Created at: ${this.createTime.toLocaleString()}</p>
+            <p>Updated at: ${this.editTime.toLocaleString()}</p>
         </div>
         <div class="col-6">
             <form>
@@ -30,6 +30,6 @@ export class Note {
 
     get listHTMLTemplate() {
         /*HTML*/
-        return (`<h3 onclick="app.NoteController.setActiveNote(${this.name})" type="button">${this.name} <i class="mdi mdi-circle fs-6 fw-bolder text-warning"></i></h3>`)
+        return (`<h3 onclick="app.NotesController.setActiveNote('${this.name}')" type="button">${this.name} <i class="mdi mdi-circle fs-6 fw-bolder text-warning"></i></h3>`)
     }
 }
