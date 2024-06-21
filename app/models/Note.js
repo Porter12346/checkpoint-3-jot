@@ -30,6 +30,6 @@ export class Note {
 
     get listHTMLTemplate() {
         /*HTML*/
-        return (``)
+        return (`<h3>${this.name} <i class="mdi mdi-circle fs-6 fw-bolder text-warning"></i></h3>`)
     }
 }

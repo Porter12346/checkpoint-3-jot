@@ -20,12 +20,39 @@
   <header>
     <nav class="navbar navbar-dark navbar-expand bg-dark text-light px-2 d-flex justify-content-between">
       <h1>J O T</h1>
-      <button class="btn btn-primary"><i class="mdi mdi-notebook"></i></button>
+      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+        aria-controls="offcanvasExample">
+        <i class="mdi mdi-notebook" aria-controls="offcanvasExample"></i>
+      </button>
+
+
     </nav>
   </header>
 
   <!-- SECTION -->
   <main>
+
+    <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasExample"
+      aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Jots: 1</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body mx-5">
+        <div id="notesList">
+          <h3>HTML <i class="mdi mdi-circle fs-6 fw-bolder text-warning"></i></h3>
+        </div>
+        <form class="mt-5">
+          <div class="mb-3 d-flex gap-2">
+            <input type="text" class="form-control bg-opacity-10 bg-light border-0" id="exampleFormControlInput1"
+              placeholder="Create Note">
+            <input type="color" class="form-control form-control-color m-0 p-0 border-0" id="exampleColorInput"
+              value="#563d7c" title="Choose your color">
+            <button class="btn btn-primary">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <section id="router-view">
       <!-- primary viewport -->
