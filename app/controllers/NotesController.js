@@ -1,9 +1,22 @@
 import { AppState } from "../AppState.js";
 import { notesService } from "../services/NotesService.js";
+import { setHTML } from "../utils/Writer.js";
 
 export class NotesController {
     constructor() {
         console.log('notes control init');
+        this.setActiveNote('javascript')
+    }
+
+    setActiveNote(name) {
+        let foundNote = AppState.notes.find((note) => note.name == name)
+        notesService.setActiveNote(foundNote)
+        this.drawActiveNote()
+    }
+
+    drawActiveNote() {
+        let htmlInject = AppState.activeNote.activeHTMLTemplate
+        setHTML('activeNote', htmlInject)
     }
 
     get sideBarHTMLTemplate() {

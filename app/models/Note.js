@@ -30,6 +30,6 @@ export class Note {
 
     get listHTMLTemplate() {
         /*HTML*/
-        return (`<h3>${this.name} <i class="mdi mdi-circle fs-6 fw-bolder text-warning"></i></h3>`)
+        return (`<h3 onclick="app.NoteController.setActiveNote(${this.name})" type="button">${this.name} <i class="mdi mdi-circle fs-6 fw-bolder text-warning"></i></h3>`)
     }
 }

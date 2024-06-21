@@ -14,6 +14,11 @@ class ObservableAppState extends EventEmitter {
     color: ''
   })
   ]
+
+  /**
+  * @type Note
+  */
+  activeNote = null
 }
 
 export const AppState = createObservableProxy(new ObservableAppState())
