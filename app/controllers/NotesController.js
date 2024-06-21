@@ -1,23 +1,28 @@
 import { AppState } from "../AppState.js";
 import { notesService } from "../services/NotesService.js";
-import { setHTML } from "../utils/Writer.js";
+import { getFormData } from "../utils/FormHandler.js";
+import { loadState, saveState } from "../utils/Store.js";
+import { setHTML, setText } from "../utils/Writer.js";
 
 export class NotesController {
     constructor() {
+        AppState.on('notes', this.drawNotesList)
+        AppState.on('activeNote', this.drawNotesList)
         console.log('notes control init');
         this.setActiveNote('javascript')
-        this.drawNotesList()
     }
 
     setActiveNote(name) {
         let foundNote = AppState.notes.find((note) => note.name == name)
         notesService.setActiveNote(foundNote)
-        this.drawActiveNote()
     }
 
     drawActiveNote() {
         let htmlInject = AppState.activeNote.activeHTMLTemplate
         setHTML('activeNote', htmlInject)
+        document.getElementById('custom-border').style.border = 'solid'
+        document.getElementById('custom-border').style.borderColor = AppState.activeNote.color
+        document.getElementById('custom-border').style.backgroundColor = AppState.activeNote.color + '25'
     }
 
     drawNotesList() {
@@ -27,6 +32,37 @@ export class NotesController {
             htmlInject += note.listHTMLTemplate
         });
         setHTML('notesList', htmlInject)
+        setText('notesCount', notes.length)
+        notes.forEach((note) => document.getElementById(`color-${note.name}`).style.color = note.color)
+    }
+
+    createNote() {
+        event.preventDefault()
+        console.log("creating note");
+        let notes = AppState.notes
+        const form = event.target
+        const data = getFormData(form)
+        notesService.createNote(data)
+        this.setActiveNote(notes[notes.length - 1].name)
+        this.drawNotesList()
+        // @ts-ignore
+        form.reset()
+    }
+
+    deleteNote() {
+        if (window.confirm('You are about to permanently delete this note!')) {
+            console.log('deleting note');
+            notesService.deleteNote()
+            if (AppState.notes.length == 0) {
+                let htmlInject = '<h1>No Current notes</h1>'
+                setHTML('activeNote', htmlInject)
+            }
+            else {
+                this.setActiveNote(AppState.notes[0].name)
+            }
+            this.drawNotesList()
+        }
+
     }
 
     get sideBarHTMLTemplate() {

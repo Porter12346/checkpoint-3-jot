@@ -35,18 +35,18 @@
     <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasExample"
       aria-labelledby="offcanvasExampleLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Jots: 1</h5>
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Jots: <span id="notesCount"></span></h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body mx-5">
         <div id="notesList">
           <h3 type="button">HTML <i class="mdi mdi-circle fs-6 fw-bolder text-warning"></i></h3>
         </div>
-        <form class="mt-5">
+        <form class="mt-5" onsubmit="app.NotesController.createNote()">
           <div class="mb-3 d-flex gap-2">
-            <input type="text" class="form-control bg-opacity-10 bg-light border-0" id="exampleFormControlInput1"
-              placeholder="Create Note">
-            <input type="color" class="form-control form-control-color m-0 p-0 border-0" id="exampleColorInput"
+            <input type="text" class="form-control bg-opacity-10 bg-light border-0 text-light" id="name" name="name"
+              placeholder="Create Note" minlength="3" maxlength="15">
+            <input type="color" class="form-control form-control-color m-0 p-0 border-0" id="color" name="color"
               value="#563d7c" title="Choose your color">
             <button class="btn btn-primary">Create</button>
           </div>

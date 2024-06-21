@@ -2,14 +2,14 @@ export class Note {
     constructor(data) {
         this.name = data.name
         this.color = data.color
-        this.body = data.body
+        this.body = ''
         this.createTime = new Date
         this.editTime = this.createTime
     }
 
     get activeHTMLTemplate() {
         /*HTML*/
-        return (`<div class="row  border bg-opacity-25 bg-light py-4 px-2">
+        return (`<div class="row py-4 px-2" id="custom-border">
             <div div class="col-5" >
             <h3>${this.name}</h3>
             <p>Created at: ${this.createTime.toLocaleString()}</p>
@@ -23,13 +23,13 @@ export class Note {
             </div>
             </form>
         </div>
-        <div class="col-1"> <button class="btn btn-danger rounded-circle"><i
+        <div class="col-1"> <button onclick="app.NotesController.deleteNote()" class="btn btn-danger rounded-circle"><i
                 class="mdi mdi-delete-outline"></i></button></div>
         </div > `)
     }
 
     get listHTMLTemplate() {
         /*HTML*/
-        return (`<h3 onclick="app.NotesController.setActiveNote('${this.name}')" type="button">${this.name} <i class="mdi mdi-circle fs-6 fw-bolder text-warning"></i></h3>`)
+        return (`<h3 onclick="app.NotesController.setActiveNote('${this.name}')" type="button">${this.name} <i class="mdi mdi-circle fs-6 fw-bolder" id='color-${this.name}'></i></h3>`)
     }
 }
