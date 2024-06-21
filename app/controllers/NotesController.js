@@ -26,6 +26,13 @@ export class NotesController {
         document.getElementById('custom-border').style.backgroundColor = AppState.activeNote.color + '25'
     }
 
+    saveActiveNote() {
+        //TODO this does not work at all
+        let activeNote = AppState.activeNote
+        let bodyText = document.getElementById('activeBodyArea').innerText
+        console.log(bodyText)
+    }
+
     drawNotesList() {
         const notes = AppState.notes
         let htmlInject = ''

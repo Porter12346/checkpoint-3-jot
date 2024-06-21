@@ -1,6 +1,5 @@
 export class Note {
     constructor(data) {
-        debugger
         this.name = data.name
         this.color = data.color
         this.body = ''
@@ -20,7 +19,7 @@ export class Note {
         <div class="col-6">
             <form>
             <div class="mb-3 mt-5">
-                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Start your jot..."
+                <textarea class="form-control" id="activeBodyArea" name="activeBodyArea" placeholder="Start your jot..."
                 rows="15">${this.body}</textarea>
             </div>
             </form>
