@@ -5,7 +5,7 @@ import { loadState, saveState } from "../utils/Store.js";
 class NotesService {
     constructor() {
         console.log('notes service init');
-        loadState()
+        this.loadNotes()
     }
 
     setActiveNote(note) {
@@ -33,7 +33,7 @@ class NotesService {
 
     loadNotes() {
         if (loadState('savedNotes', [Note]).length) {
-            AppState.notes = loadState('savedNotes')
+            AppState.notes = loadState('savedNotes', [Note])
         }
     }
 }

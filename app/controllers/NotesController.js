@@ -7,9 +7,10 @@ import { setHTML, setText } from "../utils/Writer.js";
 export class NotesController {
     constructor() {
         AppState.on('notes', this.drawNotesList)
-        AppState.on('activeNote', this.drawNotesList)
+        AppState.on('activeNote', this.drawActiveNote)
         console.log('notes control init');
         this.setActiveNote('javascript')
+        this.drawNotesList()
     }
 
     setActiveNote(name) {
@@ -44,7 +45,6 @@ export class NotesController {
         const data = getFormData(form)
         notesService.createNote(data)
         this.setActiveNote(notes[notes.length - 1].name)
-        this.drawNotesList()
         // @ts-ignore
         form.reset()
     }
@@ -60,7 +60,6 @@ export class NotesController {
             else {
                 this.setActiveNote(AppState.notes[0].name)
             }
-            this.drawNotesList()
         }
 
     }

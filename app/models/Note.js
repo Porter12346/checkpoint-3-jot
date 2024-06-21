@@ -1,9 +1,11 @@
 export class Note {
     constructor(data) {
+        debugger
         this.name = data.name
         this.color = data.color
         this.body = ''
-        this.createTime = new Date
+        console.log('creating new note');
+        this.createTime = data.createTime ? new Date(data.createTime) : new Date()
         this.editTime = this.createTime
     }
 
