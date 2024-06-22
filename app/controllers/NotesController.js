@@ -9,7 +9,7 @@ export class NotesController {
         AppState.on('notes', this.drawNotesList)
         AppState.on('activeNote', this.drawActiveNote)
         console.log('notes control init');
-        this.setActiveNote('javascript')
+        this.setActiveNote(AppState.notes[0].name)
         this.drawNotesList()
     }
 
@@ -27,10 +27,11 @@ export class NotesController {
     }
 
     saveActiveNote() {
-        //TODO this does not work at all
-        let activeNote = AppState.activeNote
-        let bodyText = document.getElementById('activeBodyArea').innerText
-        console.log(bodyText)
+        event.preventDefault()
+        const form = event.target
+        const innerText = getFormData(form)
+        console.log(innerText.activeBodyArea);
+        notesService.saveActiveNote(innerText.activeBodyArea)
     }
 
     drawNotesList() {
@@ -51,6 +52,7 @@ export class NotesController {
         const form = event.target
         const data = getFormData(form)
         notesService.createNote(data)
+        console.log(data.color);
         this.setActiveNote(notes[notes.length - 1].name)
         // @ts-ignore
         form.reset()

@@ -9,14 +9,9 @@ class ObservableAppState extends EventEmitter {
 
 
   notes = [new Note({
-    name: 'javascript',
+    name: 'Example Note',
     body: 'a lil bit of body text here',
-    color: ''
-  }),
-  new Note({
-    name: 'javascript 2',
-    body: 'a lil bit more of that sweet sweet body text here',
-    color: ''
+    color: '#237499'
   })
   ]
 

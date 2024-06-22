@@ -2,7 +2,7 @@ export class Note {
     constructor(data) {
         this.name = data.name
         this.color = data.color
-        this.body = ''
+        this.body = data.body ? data.body : ''
         console.log('creating new note');
         this.createTime = data.createTime ? new Date(data.createTime) : new Date()
         this.editTime = this.createTime
@@ -16,12 +16,13 @@ export class Note {
             <p>Created at: ${this.createTime.toLocaleString()}</p>
             <p>Updated at: ${this.editTime.toLocaleString()}</p>
         </div>
-        <div class="col-6">
-            <form>
+        <div class="col-6 d-flex flex-column">
+            <form id='bodyForm' onsubmit='app.NotesController.saveActiveNote()'>
             <div class="mb-3 mt-5">
                 <textarea class="form-control" id="activeBodyArea" name="activeBodyArea" placeholder="Start your jot..."
                 rows="15">${this.body}</textarea>
             </div>
+            <button class="btn btn-warning justify-self-end" type='submit'>SAVE</button>
             </form>
         </div>
         <div class="col-1"> <button onclick="app.NotesController.deleteNote()" class="btn btn-danger rounded-circle"><i

@@ -3,9 +3,18 @@ import { Note } from "../models/Note.js";
 import { loadState, saveState } from "../utils/Store.js";
 
 class NotesService {
+
     constructor() {
+        AppState.on('notes', this.saveNotes)
         console.log('notes service init');
         this.loadNotes()
+    }
+
+    saveActiveNote(activeBodyArea) {
+        AppState.activeNote.body = (`${activeBodyArea}`)
+        let editDate = new Date()
+        AppState.activeNote.editTime = editDate
+        this.saveNotes()
     }
 
     setActiveNote(note) {
@@ -16,7 +25,6 @@ class NotesService {
         let notes = AppState.notes
         let note = new Note(data)
         notes.push(note)
-        this.saveNotes()
     }
 
     deleteNote() {
