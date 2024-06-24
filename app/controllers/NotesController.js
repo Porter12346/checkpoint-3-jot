@@ -32,6 +32,7 @@ export class NotesController {
         const innerText = getFormData(form)
         console.log(innerText.activeBodyArea);
         notesService.saveActiveNote(innerText.activeBodyArea)
+        this.drawActiveNote()
     }
 
     drawNotesList() {

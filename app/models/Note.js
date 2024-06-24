@@ -5,7 +5,7 @@ export class Note {
         this.body = data.body ? data.body : ''
         console.log('creating new note');
         this.createTime = data.createTime ? new Date(data.createTime) : new Date()
-        this.editTime = this.createTime
+        this.editTime = data.editTime ? new Date(data.editTime) : new Date()
     }
 
     get activeHTMLTemplate() {
