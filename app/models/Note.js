@@ -1,11 +1,15 @@
+import { generateId } from "../utils/GenerateId.js";
+
 export class Note {
     constructor(data) {
+        // FIXME add unique ID, and replace name argument with id argument
         this.name = data.name
         this.color = data.color
         this.body = data.body ? data.body : ''
         console.log('creating new note');
         this.createTime = data.createTime ? new Date(data.createTime) : new Date()
         this.editTime = data.editTime ? new Date(data.editTime) : new Date()
+        this.id = data.id ? data.id : generateId()
     }
 
     get activeHTMLTemplate() {
@@ -32,6 +36,6 @@ export class Note {
 
     get listHTMLTemplate() {
         /*HTML*/
-        return (`<h3 onclick="app.NotesController.setActiveNote('${this.name}')" type="button">${this.name} <i class="mdi mdi-circle fs-6 fw-bolder" id='color-${this.name}'></i></h3>`)
+        return (`<h3 onclick="app.NotesController.setActiveNote('${this.id}')" type="button">${this.name} <i class="mdi mdi-circle fs-6 fw-bolder" id='color-${this.id}'></i></h3>`)
     }
 }

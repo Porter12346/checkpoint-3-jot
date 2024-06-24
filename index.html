@@ -44,8 +44,9 @@
         </div>
         <form class="mt-5" onsubmit="app.NotesController.createNote()">
           <div class="mb-3 d-flex gap-2">
+            <!-- FIXME add required! ✅-->
             <input type="text" class="form-control bg-opacity-10 bg-light border-0 text-light" id="name" name="name"
-              placeholder="Create Note" minlength="3" maxlength="15">
+              placeholder="Create Note" minlength="3" maxlength="15" required>
             <input type="color" class="form-control form-control-color m-0 p-0 border-0" id="color" name="color"
               value="#563d7c" title="Choose your color">
             <button class="btn btn-primary">Create</button>

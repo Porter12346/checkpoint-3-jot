@@ -9,12 +9,12 @@ export class NotesController {
         AppState.on('notes', this.drawNotesList)
         AppState.on('activeNote', this.drawActiveNote)
         console.log('notes control init');
-        this.setActiveNote(AppState.notes[0].name)
+        this.setActiveNote(AppState.notes[0].id)
         this.drawNotesList()
     }
 
-    setActiveNote(name) {
-        let foundNote = AppState.notes.find((note) => note.name == name)
+    setActiveNote(id) {
+        let foundNote = AppState.notes.find((note) => note.id == id)
         notesService.setActiveNote(foundNote)
     }
 
@@ -43,7 +43,7 @@ export class NotesController {
         });
         setHTML('notesList', htmlInject)
         setText('notesCount', notes.length)
-        notes.forEach((note) => document.getElementById(`color-${note.name}`).style.color = note.color)
+        notes.forEach((note) => document.getElementById(`color-${note.id}`).style.color = note.color)
     }
 
     createNote() {
@@ -54,7 +54,7 @@ export class NotesController {
         const data = getFormData(form)
         notesService.createNote(data)
         console.log(data.color);
-        this.setActiveNote(notes[notes.length - 1].name)
+        this.setActiveNote(notes[notes.length - 1].id)
         // @ts-ignore
         form.reset()
     }
@@ -68,7 +68,7 @@ export class NotesController {
                 setHTML('activeNote', htmlInject)
             }
             else {
-                this.setActiveNote(AppState.notes[0].name)
+                this.setActiveNote(AppState.notes[0].id)
             }
         }
 

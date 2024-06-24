@@ -31,7 +31,8 @@ class NotesService {
         console.log('deleting note but service style');
         let notes = AppState.notes
         let activeNote = AppState.activeNote
-        let spliceIndex = notes.findIndex((note) => note.name = activeNote.name)
+        // FIXME one equal sign might be breaking things here
+        let spliceIndex = notes.findIndex((note) => note.id == activeNote.id)
         notes.splice(spliceIndex, 1)
     }
 
